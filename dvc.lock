@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  cancer_cleaning:
+    cmd: python src/data/cancer_cleaning.py
+    deps:
+    - path: data/raw/cancer.csv
+      hash: md5
+      md5: 6165d90b8708bb1c1dd14245cc6bef46
+      size: 125204
+    - path: src/data/cancer_cleaning.py
+      hash: md5
+      md5: b2f6c69acb1e5ec52475bc18f02f5686
+      size: 775
+    outs:
+    - path: data/processed/cancer_cleanned.csv
+      hash: md5
+      md5: 01a1945f417ff20b163e641b99a95c18
+      size: 39238

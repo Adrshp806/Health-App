@@ -1,7 +1,7 @@
 import pandas as pd
 
 def clean_data(df):
-    saved_data_path = r'data/processed/cancer_cleaned.csv'
+    saved_data_path = r'data/processed/cancer_cleanned.csv'
     
     # List of selected features
     selected_features = [

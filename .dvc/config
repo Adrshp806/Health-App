@@ -1,4 +1,8 @@
 [core]
-    remote = myremote
+    remote = github_remote
 ['remote "myremote"']
     url = s3://mybucket/health-app
+['remote "gdrive_remote"']
+    url = gdrive://1csW2c114KST69BwlZ-8k8wFwd6BxePrC
+['remote "github_remote"']
+    url = https://github.com/Adrshp806/Health-App.git

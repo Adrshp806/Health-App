@@ -38,6 +38,42 @@ stages:
     outs:
     - data/interim/heart_processed/train.csv
     - data/interim/heart_processed/test.csv
+  data_preparation_diabetes:
+    cmd: python src/data/data_preparation_diabetes.py
+    params:
+    - Data_Preparation.test_size
+    - Data_Preparation.random_state
+    deps:
+    - data/processed/diabetes_cleanned.csv
+    - src/data/data_preparation_diabetes.py
+    outs:
+    - data/interim/diabetes_processed/train.csv
+    - data/interim/diabetes_processed/test.csv
+  
+  data_preparation_liver:
+    cmd: python src/data/data_preparation_liver.py
+    params:
+    - Data_Preparation.test_size
+    - Data_Preparation.random_state
+    deps:
+    - data/processed/processed_liver_data.csv
+    - src/data/data_preparation_liver.py
+    outs:
+    - data/interim/liver_processed/train.csv
+    - data/interim/liver_processed/test.csv
+  data_preparation_kidney:
+    cmd: python src/data/data_preparation_kidney.py
+    params:
+    - Data_Preparation.test_size
+    - Data_Preparation.random_state
+    deps:
+    - data/processed/kidney_cleanned.csv
+    - src/data/data_preparation_kidney.py
+    outs:
+    - data/interim/kidney_processed/train.csv
+    - data/interim/kidney_processed/test.csv
+
+
 
 
   data_preprocessing_cancer:

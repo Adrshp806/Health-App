@@ -260,3 +260,75 @@ stages:
       hash: md5
       md5: d768600fd47a5043e44b3f168892ff46
       size: 3900
+  data_preparation_diabetes:
+    cmd: python src/data/data_preparation_diabetes.py
+    deps:
+    - path: data/processed/diabetes_cleanned.csv
+      hash: md5
+      md5: f8183aa843a1f37607d7bc1131626f1b
+      size: 24059
+    - path: src/data/data_preparation_diabetes.py
+      hash: md5
+      md5: 717e31aa974ec5620df1c20b40b8cffa
+      size: 3041
+    params:
+      params.yaml:
+        Data_Preparation.random_state: 42
+        Data_Preparation.test_size: 0.2
+    outs:
+    - path: data/interim/diabetes_processed/test.csv
+      hash: md5
+      md5: 0ae68e0c1e7e08024e93e5ffcc87bfbf
+      size: 4873
+    - path: data/interim/diabetes_processed/train.csv
+      hash: md5
+      md5: 41288c9b48d586ac06a6de4eb3e16d98
+      size: 19284
+  data_preparation_liver:
+    cmd: python src/data/data_preparation_liver.py
+    deps:
+    - path: data/processed/processed_liver_data.csv
+      hash: md5
+      md5: 33cf3393f00b7b1f9e47bbfc56de43bf
+      size: 14004
+    - path: src/data/data_preparation_liver.py
+      hash: md5
+      md5: 6b33c055d18185d2e50028ce84bd4647
+      size: 3031
+    params:
+      params.yaml:
+        Data_Preparation.random_state: 42
+        Data_Preparation.test_size: 0.2
+    outs:
+    - path: data/interim/liver_processed/test.csv
+      hash: md5
+      md5: 3e171b96408b0e247df1ce3e74f09dde
+      size: 2884
+    - path: data/interim/liver_processed/train.csv
+      hash: md5
+      md5: e1fffe46dde9ae49d8296ed6ea2140ac
+      size: 11228
+  data_preparation_kidney:
+    cmd: python src/data/data_preparation_kidney.py
+    deps:
+    - path: data/processed/kidney_cleanned.csv
+      hash: md5
+      md5: 6486df50167ae605746cd0717cbf7c74
+      size: 47695
+    - path: src/data/data_preparation_kidney.py
+      hash: md5
+      md5: d83e2763677bf0009bc3ba5f149a935f
+      size: 3042
+    params:
+      params.yaml:
+        Data_Preparation.random_state: 42
+        Data_Preparation.test_size: 0.2
+    outs:
+    - path: data/interim/kidney_processed/test.csv
+      hash: md5
+      md5: 7a82b922e3d58d554b78733f6e785d65
+      size: 9884
+    - path: data/interim/kidney_processed/train.csv
+      hash: md5
+      md5: 20f5ea2ce99fc2e7d97c827b10b27cb1
+      size: 38151

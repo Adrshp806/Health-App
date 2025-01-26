@@ -105,8 +105,8 @@ stages:
       size: 48551
     - path: src/data/data_cleaning.py
       hash: md5
-      md5: f229fbe2d1667208817f91df4c221ee4
-      size: 5573
+      md5: 6889c5715974887e22681fc90d0149e8
+      size: 6293
     outs:
     - path: data/processed/cancer_cleanned.csv
       hash: md5
@@ -122,8 +122,8 @@ stages:
       size: 47695
     - path: data/processed/processed_heart_disease.csv
       hash: md5
-      md5: a475aa906655f6f83fadbd9a421873ae
-      size: 38996
+      md5: 08b1e0018ce191523049e764f7f23e46
+      size: 39180
     - path: data/processed/processed_liver_data.csv
       hash: md5
       md5: 33cf3393f00b7b1f9e47bbfc56de43bf
@@ -180,3 +180,83 @@ stages:
       hash: md5
       md5: e03b4016fcc111cbdd112cc45935fae6
       size: 2390
+  data_preparation_heart:
+    cmd: python src/data/data_preparation_heart.py
+    deps:
+    - path: data/processed/processed_heart_disease.csv
+      hash: md5
+      md5: 08b1e0018ce191523049e764f7f23e46
+      size: 39180
+    - path: src/data/data_preparation_heart.py
+      hash: md5
+      md5: 4fe26283b2d3cb46ed26d501936c414e
+      size: 3033
+    params:
+      params.yaml:
+        Data_Preparation.random_state: 42
+        Data_Preparation.test_size: 0.2
+    outs:
+    - path: data/interim/heart_processed/test.csv
+      hash: md5
+      md5: 603148d44ba1020b6744759ac7acfbeb
+      size: 8047
+    - path: data/interim/heart_processed/train.csv
+      hash: md5
+      md5: 374c10878d91039b2ee7605fac8f6f4c
+      size: 31398
+  data_preprocessing_cancer:
+    cmd: python src/features/data_preprocessing_cancer.py
+    deps:
+    - path: data/interim/cancer_processed/test.csv
+      hash: md5
+      md5: 4e9aebb134536738aa83633088c0aaf0
+      size: 4191
+    - path: data/interim/cancer_processed/train.csv
+      hash: md5
+      md5: 629894dfa3f21f4927c8da7f4caf7670
+      size: 16590
+    - path: src/features/data_preprocessing_cancer.py
+      hash: md5
+      md5: 8ef46626170da1eee8a3a4273e034f66
+      size: 5880
+    outs:
+    - path: data/cleaned_processed/processed_cancer/test_trans.csv
+      hash: md5
+      md5: ae5ed97eca8ca5b2439f2341e63a7852
+      size: 11428
+    - path: data/cleaned_processed/processed_cancer/train_trans.csv
+      hash: md5
+      md5: 06881e223c51a807c5fa91c774342cd2
+      size: 45709
+    - path: models/cancer_preprocessor.joblib
+      hash: md5
+      md5: e03b4016fcc111cbdd112cc45935fae6
+      size: 2390
+  data_preprocessing_heart:
+    cmd: python src/features/data_preprocessing_heart.py
+    deps:
+    - path: data/interim/heart_processed/test.csv
+      hash: md5
+      md5: 603148d44ba1020b6744759ac7acfbeb
+      size: 8047
+    - path: data/interim/heart_processed/train.csv
+      hash: md5
+      md5: 374c10878d91039b2ee7605fac8f6f4c
+      size: 31398
+    - path: src/features/data_preprocessing_heart.py
+      hash: md5
+      md5: 8a8b78bde0a6a80c418e4437a9329ce6
+      size: 6138
+    outs:
+    - path: data/cleaned_processed/processed_heart/test_trans.csv
+      hash: md5
+      md5: 3554060ce09495bc32e5c20e47cadae2
+      size: 28701
+    - path: data/cleaned_processed/processed_heart/train_trans.csv
+      hash: md5
+      md5: 4a297e0678e717336341b20035f220b4
+      size: 113793
+    - path: models/heart_preprocessor.joblib
+      hash: md5
+      md5: d768600fd47a5043e44b3f168892ff46
+      size: 3900

@@ -112,6 +112,26 @@ def clean_cancer_data(df):
 
 
 def clean_heart_data(df):
+      # Define column renaming
+    rename_columns = {
+        "age": "Age",
+        "sex": "Gender",
+        "cp": "Chest_Pain_Type",
+        "trestbps": "Resting_Blood_Pressure",
+        "chol": "Serum_Cholesterol",
+        "fbs": "Fasting_Blood_Sugar",
+        "restecg": "Resting_ECG_Results",
+        "thalach": "Max_Heart_Rate_Achieved",
+        "exang": "Exercise_Induced_Angina",
+        "oldpeak": "ST_Depression_Exercise_vs_Rest",
+        "slope": "Slope_of_ST_Segment",
+        "ca": "Major_Vessels_Fluoroscopy",
+        "thal": "Thalassemia_Type",
+        "target": "Heart_Disease"
+    }
+
+    # Rename the columns in the dataset
+    df.rename(columns=rename_columns, inplace=True)
     # Get the directory of the current script
     base_dir = os.path.dirname(os.path.abspath(__file__))
     
@@ -120,9 +140,11 @@ def clean_heart_data(df):
     
     # Ensure the directory exists
     os.makedirs(processed_dir, exist_ok=True)
+
     
     # Define the full path to save the processed data
     saved_data_path = os.path.join(processed_dir, 'processed_heart_disease.csv')
+    
     
     # Save the processed data
     df.to_csv(saved_data_path, index=False)

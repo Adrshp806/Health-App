@@ -18,9 +18,23 @@ set_config(transform_output='pandas')
 
 # columns to process in data 
 
-num_cols = ['perimeter_mean', 'area_mean', 'concavity_mean', 'concave points_mean', 'radius_mean']
+num_cols = [
+    "Age",
+    "Chest_Pain_Type",
+    "Resting_Blood_Pressure",
+    "Serum_Cholesterol",
+    "Fasting_Blood_Sugar",
+    "Resting_ECG_Results",
+    "Max_Heart_Rate_Achieved",
+    "Exercise_Induced_Angina",
+    "ST_Depression_Exercise_vs_Rest",
+    "Slope_of_ST_Segment",
+    "Major_Vessels_Fluoroscopy",
+    "Thalassemia_Type",
+]
 
-target_col = 'diagnosis'
+
+target_col = 'Heart_Disease'
 
 
 # create logger
@@ -95,11 +109,11 @@ if __name__ == "__main__":
     root_path = Path(__file__).parent.parent.parent
     
     #data load path
-    train_data_path = root_path / "data" / "interim" / "cancer_processed" / "train.csv"
-    test_data_path = root_path / "data" / "interim" / "cancer_processed" / "test.csv"
+    train_data_path = root_path / "data" / "interim" / "heart_processed" / "train.csv"
+    test_data_path = root_path / "data" / "interim" / "heart_processed" / "test.csv"
 
     #save data directory
-    save_data_dir = root_path / "data" / "cleaned_processed" / "processed_cancer"
+    save_data_dir = root_path / "data" / "cleaned_processed" / "processed_heart"
     
     #make dir if not present
 
@@ -159,7 +173,7 @@ if __name__ == "__main__":
         
     # save the preprocessor to location
     # transformer name
-    transformer_filename = "cancer_preprocessor.joblib"
+    transformer_filename = "heart_preprocessor.joblib"
     # directory to save transformers
     transformer_save_dir = root_path / "models"
     transformer_save_dir.mkdir(exist_ok=True)

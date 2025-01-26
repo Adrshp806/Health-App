@@ -26,7 +26,23 @@ stages:
     outs:
     - data/interim/cancer_processed/train.csv
     - data/interim/cancer_processed/test.csv
-  data_preprocessing:
+  
+  data_preparation_heart:
+    cmd: python src/data/data_preparation_heart.py
+    params:
+    - Data_Preparation.test_size
+    - Data_Preparation.random_state
+    deps:
+    - data/processed/processed_heart_disease.csv
+    - src/data/data_preparation_heart.py
+    outs:
+    - data/interim/heart_processed/train.csv
+    - data/interim/heart_processed/test.csv
+
+  
+
+
+  data_preprocessing_cancer:
     cmd: python src/features/data_preprocessing_cancer.py
     deps:
     - data/interim/cancer_processed/test.csv
@@ -35,7 +51,17 @@ stages:
     outs:
     - data/cleaned_processed/processed_cancer/test_trans.csv
     - data/cleaned_processed/processed_cancer/train_trans.csv
-    - models/preprocessor.joblib
+    - models/cancer_preprocessor.joblib
+  data_preprocessing_heart:
+    cmd: python src/features/data_preprocessing_heart.py
+    deps:
+    - data/interim/heart_processed/test.csv
+    - data/interim/heart_processed/train.csv
+    - src/features/data_preprocessing_heart.py
+    outs:
+    - data/cleaned_processed/processed_heart/test_trans.csv
+    - data/cleaned_processed/processed_heart/train_trans.csv
+    - models/heart_preprocessor.joblib
 
 #   # train:
 #   #   cmd: python src/models/train.py

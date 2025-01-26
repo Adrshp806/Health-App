@@ -7,8 +7,34 @@ def clean_kidney_data(df):
     Clean the kidney disease dataset.
     """
     saved_data_path = r'data/processed/kidney_cleanned.csv'
-    df.drop_duplicates(inplace=True)
-    df.dropna(inplace=True)
+    cols_names={"bp":"blood_pressure",
+          "sg":"specific_gravity",
+          "al":"albumin",
+          "su":"sugar",
+          "rbc":"red_blood_cells",
+          "pc":"pus_cell",
+          "pcc":"pus_cell_clumps",
+          "ba":"bacteria",
+          "bgr":"blood_glucose_random",
+          "bu":"blood_urea",
+          "sc":"serum_creatinine",
+          "sod":"sodium",
+          "pot":"potassium",
+          "hemo":"haemoglobin",
+          "pcv":"packed_cell_volume",
+          "wc":"white_blood_cell_count",
+          "rc":"red_blood_cell_count",
+          "htn":"hypertension",
+          "dm":"diabetes_mellitus",
+          "cad":"coronary_artery_disease",
+          "appet":"appetite",
+          "pe":"pedal_edema",
+          "ane":"anemia"}
+    df.rename(columns=cols_names, inplace=True)
+    df.drop(['id'], axis=1, inplace=True)
+    df['diabetes_mellitus'] = df['diabetes_mellitus'].replace(to_replace = {'no':'no','yes':'yes',' yes':'yes'})
+    df['coronary_artery_disease'] = df['coronary_artery_disease'].replace(to_replace = 'no', value='no')
+    df['classification'] = df['classification'].replace(to_replace = 'ckd', value = 'ckd')
     df.to_csv(saved_data_path, index=False)
     
     # Save cleaned data

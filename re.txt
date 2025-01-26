@@ -1,0 +1,5 @@
+cancer data set is ready for preprocessing
+diabetes dataset is ready for preprocessing
+in kidney data set need for feature selection 
+heart dataset is ready for preprocessing
+liver dataset is ready for preprocessed

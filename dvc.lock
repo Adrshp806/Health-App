@@ -9,13 +9,13 @@ stages:
       size: 125204
     - path: src/data/cancer_cleaning.py
       hash: md5
-      md5: b2f6c69acb1e5ec52475bc18f02f5686
-      size: 775
+      md5: c7029448b374018d8a973b36520ea10a
+      size: 672
     outs:
     - path: data/processed/cancer_cleanned.csv
       hash: md5
-      md5: 01a1945f417ff20b163e641b99a95c18
-      size: 39238
+      md5: 65f751509188cd9b07caba77d892c4a6
+      size: 20698
   liver_cleaning:
     cmd: python src/data/liver_cleaning.py
     deps:
@@ -41,10 +41,90 @@ stages:
       size: 48551
     - path: src/data/kidney_cleaning.py
       hash: md5
-      md5: b519d9c5e8b2e8a188c791fa603d1eec
-      size: 716
+      md5: d603e0ce3f7668eb52de80729b7601bd
+      size: 1891
     outs:
     - path: data/processed/processed_kidney_disease.csv
       hash: md5
-      md5: a6ed32a54a7cacce2105530997bfd3e1
-      size: 48952
+      md5: 1ca171b6070f7411215b990bd7feb2f3
+      size: 47443
+  diabetes_cleaning:
+    cmd: python src/data/diabetes_cleaning.py
+    deps:
+    - path: data/raw/diabetes.csv
+      hash: md5
+      md5: f2906818eda8fcfc8f8416557ab1e6df
+      size: 23873
+    - path: src/data/diabetes_cleaning.py
+      hash: md5
+      md5: b2317b088e52933acf0b8edccfd25bb4
+      size: 350
+    outs:
+    - path: data/processed/diabetes_cleanned.csv
+      hash: md5
+      md5: f8183aa843a1f37607d7bc1131626f1b
+      size: 24059
+  heart_cleaning:
+    cmd: python src/data/heart_cleaning.py
+    deps:
+    - path: data/raw/heart.csv
+      hash: md5
+      md5: 6481ed154d5b8ff83d7c09007aaa6ed0
+      size: 38114
+    - path: src/data/heart_cleaning.py
+      hash: md5
+      md5: f8e1d486cfc7a056a867184c08c0336e
+      size: 740
+    outs:
+    - path: data/processed/processed_heart_disease.csv
+      hash: md5
+      md5: a475aa906655f6f83fadbd9a421873ae
+      size: 38996
+  data_cleaning:
+    cmd: python src/data/data_cleaning.py
+    deps:
+    - path: data/raw/cancer.csv
+      hash: md5
+      md5: 6165d90b8708bb1c1dd14245cc6bef46
+      size: 125204
+    - path: data/raw/diabetes.csv
+      hash: md5
+      md5: f2906818eda8fcfc8f8416557ab1e6df
+      size: 23873
+    - path: data/raw/heart.csv
+      hash: md5
+      md5: 6481ed154d5b8ff83d7c09007aaa6ed0
+      size: 38114
+    - path: data/raw/indian_liver_patient.csv
+      hash: md5
+      md5: 916eda6c3ca1ec22e900e1eac179cc24
+      size: 23930
+    - path: data/raw/kidney_disease.csv
+      hash: md5
+      md5: a3d3a283e888109abe3d8b2094344058
+      size: 48551
+    - path: src/data/data_cleaning.py
+      hash: md5
+      md5: 4926b18416939fac80f257a8ae2fe41d
+      size: 4948
+    outs:
+    - path: data/processed/cancer_cleanned.csv
+      hash: md5
+      md5: 65f751509188cd9b07caba77d892c4a6
+      size: 20698
+    - path: data/processed/diabetes_cleanned.csv
+      hash: md5
+      md5: f8183aa843a1f37607d7bc1131626f1b
+      size: 24059
+    - path: data/processed/kidney_cleanned.csv
+      hash: md5
+      md5: 522c1de2ce8bda41535eea329d1ddecb
+      size: 21169
+    - path: data/processed/processed_heart_disease.csv
+      hash: md5
+      md5: a475aa906655f6f83fadbd9a421873ae
+      size: 38996
+    - path: data/processed/processed_liver_data.csv
+      hash: md5
+      md5: e00f0a265c10f83741676550ea270c87
+      size: 19084

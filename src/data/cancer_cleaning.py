@@ -6,8 +6,7 @@ def clean_data(df):
     # List of selected features
     selected_features = [
         'perimeter_mean', 'area_mean', 'concavity_mean', 'concave points_mean',
-        'radius_worst', 'texture_worst', 'perimeter_worst', 'area_worst',
-        'concavity_worst', 'concave points_worst', 'diagnosis']
+        'radius_mean', 'diagnosis']
     
     df.drop(['id', 'Unnamed: 32'], axis=1, inplace=True)
     df['diagnosis'] = df['diagnosis'].map({'M': 1, 'B': 0})

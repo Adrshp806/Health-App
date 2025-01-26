@@ -13,9 +13,6 @@ def preprocess_data(df):
     
     # Define the full path to save the processed data
     saved_data_path = os.path.join(processed_dir, 'processed_heart_disease.csv')
-
-    # Add preprocessing step
-    df = pd.get_dummies(df, columns=['cp', 'restecg', 'slope', 'thal'], drop_first=True)
     
     # Save the processed data
     df.to_csv(saved_data_path, index=False)

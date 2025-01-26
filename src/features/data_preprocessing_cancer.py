@@ -20,7 +20,7 @@ set_config(transform_output='pandas')
 
 num_cols = ['perimeter_mean', 'area_mean', 'concavity_mean', 'concave points_mean', 'radius_mean']
 
-target_col = ['diagnosis'] 
+target_col = 'diagnosis'
 
 
 # create logger
@@ -95,11 +95,11 @@ if __name__ == "__main__":
     root_path = Path(__file__).parent.parent.parent
     
     #data load path
-    train_data_path = root_path / "data" / "interim" / "train.csv"
-    test_data_path = root_path / "data" / "interim" / "test.csv"
+    train_data_path = root_path / "data" / "interim" / "cancer_processed" / "train.csv"
+    test_data_path = root_path / "data" / "interim" / "cancer_processed" / "test.csv"
 
     #save data directory
-    save_data_dir = root_path / "data" / "processed"
+    save_data_dir = root_path / "data" / "cleaned_processed" / "processed_cancer"
     
     #make dir if not present
 
@@ -116,7 +116,6 @@ if __name__ == "__main__":
     preprocessor = ColumnTransformer(
     transformers=[
         ("scale", MinMaxScaler(), num_cols),  # Apply MinMaxScaler to numerical columns
-        ("normalize", StandardScaler(), num_cols)  # Apply StandardScaler (for normalization)
     ],
     remainder="passthrough",  # Keep other columns as is
     n_jobs=-1,

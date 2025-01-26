@@ -26,16 +26,16 @@ stages:
     outs:
     - data/interim/cancer_processed/train.csv
     - data/interim/cancer_processed/test.csv
-  # data_preprocessing:
-  #   cmd: python src/features/data_preprocessing.py
-  #   deps:
-  #   - data/interim/train.csv
-  #   - data/interim/test.csv
-  #   - src/features/data_preprocessing.py
-  #   outs:
-  #   - data/processed/train_trans.csv
-  #   - data/processed/test_trans.csv
-  #   - models/preprocessor.joblib
+  data_preprocessing:
+    cmd: python src/features/data_preprocessing_cancer.py
+    deps:
+    - data/interim/cancer_processed/test.csv
+    - data/interim/cancer_processed/train.csv
+    - src/features/data_preprocessing_cancer.py
+    outs:
+    - data/cleaned_processed/processed_cancer/test_trans.csv
+    - data/cleaned_processed/processed_cancer/train_trans.csv
+    - models/preprocessor.joblib
 
 #   # train:
 #   #   cmd: python src/models/train.py

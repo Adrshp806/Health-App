@@ -1,0 +1,5 @@
+outs:
+- md5: 916eda6c3ca1ec22e900e1eac179cc24
+  size: 23930
+  hash: md5
+  path: indian_liver_patient.csv

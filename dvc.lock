@@ -16,3 +16,35 @@ stages:
       hash: md5
       md5: 01a1945f417ff20b163e641b99a95c18
       size: 39238
+  liver_cleaning:
+    cmd: python src/data/liver_cleaning.py
+    deps:
+    - path: data/raw/indian_liver_patient.csv
+      hash: md5
+      md5: 916eda6c3ca1ec22e900e1eac179cc24
+      size: 23930
+    - path: src/data/liver_cleaning.py
+      hash: md5
+      md5: 9485189732d66dbd887d27cb1129518b
+      size: 2158
+    outs:
+    - path: data/processed/processed_liver_data.csv
+      hash: md5
+      md5: e00f0a265c10f83741676550ea270c87
+      size: 19084
+  kidney_cleaning:
+    cmd: python src/data/kidney_cleaning.py
+    deps:
+    - path: data/raw/kidney_disease.csv
+      hash: md5
+      md5: a3d3a283e888109abe3d8b2094344058
+      size: 48551
+    - path: src/data/kidney_cleaning.py
+      hash: md5
+      md5: b519d9c5e8b2e8a188c791fa603d1eec
+      size: 716
+    outs:
+    - path: data/processed/processed_kidney_disease.csv
+      hash: md5
+      md5: a6ed32a54a7cacce2105530997bfd3e1
+      size: 48952

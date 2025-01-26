@@ -6,8 +6,36 @@ stages:
       - src/data/cancer_cleaning.py
     outs:
       - data/processed/cancer_cleanned.csv
+  liver_cleaning:
+    cmd: python src/data/liver_cleaning.py
+    deps:
+      - data/raw/indian_liver_patient.csv
+      - src/data/liver_cleaning.py
+    outs:
+      - data/processed/processed_liver_data.csv
+  kidney_cleaning:
+    cmd: python src/data/kidney_cleaning.py
+    deps:
+      - data/raw/kidney_disease.csv
+      - src/data/kidney_cleaning.py
+    outs:
+      - data/processed/processed_kidney_disease.csv
+   
+  heart_cleaning:
+    cmd: python src/data/heart_cleaning.py
+    deps:
+      - data/raw/heart.csv
+      - src/data/heart_cleaning.py
+    outs:
+      - data/processed/processed_heart_disease.csv 
 
-
+  diabetes_cleaning:
+    cmd: python src/data/diabetes_cleaning.py
+    deps:
+      - data/raw/diabetes.csv
+      - src/data/diabetes_cleaning.py
+    outs:
+      - data/processed/processed_diabetes.csv 
   # data_preparation:
   #   cmd: python src/data/data_preparation.py
   #   params:

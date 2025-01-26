@@ -128,3 +128,27 @@ stages:
       hash: md5
       md5: 33cf3393f00b7b1f9e47bbfc56de43bf
       size: 14004
+  data_preparation_cancer:
+    cmd: python src/data/data_preparation_cancer.py
+    deps:
+    - path: data/processed/cancer_cleanned.csv
+      hash: md5
+      md5: 65f751509188cd9b07caba77d892c4a6
+      size: 20698
+    - path: src/data/data_preparation_cancer.py
+      hash: md5
+      md5: 9ebe7d75b85a333e5db3c150b38983e8
+      size: 3037
+    params:
+      params.yaml:
+        Data_Preparation.random_state: 42
+        Data_Preparation.test_size: 0.2
+    outs:
+    - path: data/interim/cancer_processed/test.csv
+      hash: md5
+      md5: 4e9aebb134536738aa83633088c0aaf0
+      size: 4191
+    - path: data/interim/cancer_processed/train.csv
+      hash: md5
+      md5: 629894dfa3f21f4927c8da7f4caf7670
+      size: 16590

@@ -28,38 +28,28 @@ def clean_liver_data(df):
     # Define the full path to save the processed data
     saved_data_path = os.path.join(processed_dir, 'processed_liver_data.csv')
 
-    # Fill missing values for 'Albumin_and_Globulin_Ratio'
-    if 'Albumin_and_Globulin_Ratio' in df.columns:
-        mean_value = round(df['Albumin_and_Globulin_Ratio'].mean(), 2)
-        df['Albumin_and_Globulin_Ratio'] = df['Albumin_and_Globulin_Ratio'].fillna(mean_value)
-
-    # Filter data based on conditions
-    df_filtered = df[
-        (df['Total_Bilirubin'] <= 25) &
-        (df['Direct_Bilirubin'] <= 15) &
-        (df['Alkaline_Phosphotase'] <= 1000) &
-        (df['Alamine_Aminotransferase'] <= 500) &
-        (df['Aspartate_Aminotransferase'] <= 1000)
-]
-
-    # Copy the filtered dataset
-    df_processed = df_filtered.copy()
+    # Drop specified columns
+    df.drop(columns=['Albumin_and_Globulin_Ratio', 'Gender', 'Total_Bilirubin', 'Direct_Bilirubin'], inplace=True)
+    
+    # Drop rows with missing values
+    df.dropna(inplace=True)
+    
+    # Drop duplicate rows
+    df.drop_duplicates(inplace=True)
+    
+    # Rename the 'Dataset' column to 'Status'
+    df.rename(columns={'Dataset': 'Status'}, inplace=True)
 
     # Encode 'Gender' using LabelEncoder
-    if 'Gender' in df_processed.columns:
+    if 'Gender' in df.columns:
         gender_encoder = LabelEncoder()
-        df_processed['Gender'] = gender_encoder.fit_transform(df_processed['Gender'])
-
-    # Drop 'Direct_Bilirubin' column
-    if 'Direct_Bilirubin' in df_processed.columns:
-        df_processed.drop('Direct_Bilirubin', axis=1, inplace=True)
-
+        df['Gender'] = gender_encoder.fit_transform(df['Gender'])
     # Transform 'Dataset' column: 1 -> 0, 2 -> 1
-    if 'Dataset' in df_processed.columns:
-        df_processed['Dataset'] = df_processed['Dataset'].apply(lambda x: 0 if x == 1 else 1)
+    if 'Status' in df.columns:
+        df['Status'] = df['Status'].apply(lambda x: 0 if x == 1 else 1)
 
     # Save the processed data
-    df_processed.to_csv(saved_data_path, index=False)
+    df.to_csv(saved_data_path, index=False)
     print(f"Processed data saved to {saved_data_path}")
 
 def clean_diabetes_data(df):

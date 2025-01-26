@@ -105,8 +105,8 @@ stages:
       size: 48551
     - path: src/data/data_cleaning.py
       hash: md5
-      md5: 4926b18416939fac80f257a8ae2fe41d
-      size: 4948
+      md5: cd376a4ed2a7ec6b268843b111b16523
+      size: 4459
     outs:
     - path: data/processed/cancer_cleanned.csv
       hash: md5
@@ -126,5 +126,5 @@ stages:
       size: 38996
     - path: data/processed/processed_liver_data.csv
       hash: md5
-      md5: e00f0a265c10f83741676550ea270c87
-      size: 19084
+      md5: 33cf3393f00b7b1f9e47bbfc56de43bf
+      size: 14004

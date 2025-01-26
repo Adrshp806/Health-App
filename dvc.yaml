@@ -39,8 +39,6 @@ stages:
     - data/interim/heart_processed/train.csv
     - data/interim/heart_processed/test.csv
 
-  
-
 
   data_preprocessing_cancer:
     cmd: python src/features/data_preprocessing_cancer.py

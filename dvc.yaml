@@ -14,7 +14,7 @@ stages:
       - data/processed/diabetes_cleanned.csv
       - data/processed/cancer_cleanned.csv
       - data/processed/processed_heart_disease.csv  # Add this output file
-
+#from here preparation stage
   data_preparation_cancer:
     cmd: python src/data/data_preparation_cancer.py
     params:
@@ -73,7 +73,7 @@ stages:
     - data/interim/kidney_processed/train.csv
     - data/interim/kidney_processed/test.csv
 
-
+#from here processing stage 
 
 
   data_preprocessing_cancer:
@@ -97,31 +97,29 @@ stages:
     - data/cleaned_processed/processed_heart/train_trans.csv
     - models/heart_preprocessor.joblib
 
-#   # train:
-#   #   cmd: python src/models/train.py
-#   #   deps:
-#   #   - src/models/train.py
-#   #   - data/processed/train_trans.csv
-#   #   params:
-#   #   - Train.Random_Forest
-#   #   - Train.LightGBM
-#   #   outs:
-#   #   - models/model.joblib
-#   #   - models/power_transformer.joblib
-#   #   - models/stacking_regressor.joblib
+  train:
+    cmd: python src/models/train.py
+    deps:
+    - src/models/train.py
+    - data/cleaned_processed/processed_cancer/train_trans.csv
+    params:
+    - Train.Random_Forest
+    - Train.LightGBM
+    outs:
+    - models/model.joblib
 
-#   # evaluation:
-#   #   cmd: python src/models/evaluation.py
-#   #   deps:
-#   #   - src/models/evaluation.py
-#   #   - data/processed/train_trans.csv
-#   #   - data/processed/test_trans.csv
-#   #   - models/model.joblib
-#   #   outs:
-#   #   - run_information.json
+  evaluation:
+    cmd: python src/models/evaluation.py
+    deps:
+    - src/models/evaluation.py
+    - data/cleaned_processed/processed_cancer/train_trans.csv
+    - data/cleaned_processed/processed_cancer/test_trans.csv
+    - models/model.joblib
+    outs:
+    - run_information.json
 
-#   # register_model:
-#   #   cmd: python src/models/register_model.py
-#   #   deps:
-#   #   - src/models/register_model.py
-#   #   - run_information.json
+  register_model:
+    cmd: python src/models/register_model.py
+    deps:
+    - src/models/register_model.py
+    - run_information.json

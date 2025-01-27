@@ -105,8 +105,8 @@ stages:
       size: 48551
     - path: src/data/data_cleaning.py
       hash: md5
-      md5: 6889c5715974887e22681fc90d0149e8
-      size: 6293
+      md5: 7f6ce6bc5f3451dba91a7099c49b2d5e
+      size: 6865
     outs:
     - path: data/processed/cancer_cleanned.csv
       hash: md5
@@ -332,3 +332,75 @@ stages:
       hash: md5
       md5: 20f5ea2ce99fc2e7d97c827b10b27cb1
       size: 38151
+  train:
+    cmd: python src/models/train.py
+    deps:
+    - path: data/cleaned_processed/processed_cancer/train_trans.csv
+      hash: md5
+      md5: 06881e223c51a807c5fa91c774342cd2
+      size: 45709
+    - path: src/models/train.py
+      hash: md5
+      md5: f9addb53e1f2747cdae14e1f31fdffa4
+      size: 5249
+    params:
+      params.yaml:
+        Train.LightGBM:
+          n_estimators: 154
+          max_depth: 27
+          learning_rate: 0.22234435854395157
+          subsample: 0.7592213724048168
+          min_child_weight: 20
+          min_split_gain: 0.004604680609280751
+          reg_lambda: 97.81002379097947
+          n_jobs: -1
+        Train.Random_Forest:
+          n_estimators: 479
+          criterion: gini
+          max_depth: 17
+          max_features: 1
+          min_samples_split: 9
+          min_samples_leaf: 2
+          max_samples: 0.6603673526197066
+          verbose: 1
+          n_jobs: -1
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: ad89987033f782220bb336a2bf814ecd
+      size: 1452911
+  evaluation:
+    cmd: python src/models/evaluation.py
+    deps:
+    - path: data/cleaned_processed/processed_cancer/test_trans.csv
+      hash: md5
+      md5: ae5ed97eca8ca5b2439f2341e63a7852
+      size: 11428
+    - path: data/cleaned_processed/processed_cancer/train_trans.csv
+      hash: md5
+      md5: 06881e223c51a807c5fa91c774342cd2
+      size: 45709
+    - path: models/model.joblib
+      hash: md5
+      md5: ad89987033f782220bb336a2bf814ecd
+      size: 1452911
+    - path: src/models/evaluation.py
+      hash: md5
+      md5: bd006b3911efa581f3525336115d81b6
+      size: 8058
+    outs:
+    - path: run_information.json
+      hash: md5
+      md5: 7862e9ad8f0dac0351b9087eae55f61f
+      size: 213
+  register_model:
+    cmd: python src/models/register_model.py
+    deps:
+    - path: run_information.json
+      hash: md5
+      md5: 7862e9ad8f0dac0351b9087eae55f61f
+      size: 213
+    - path: src/models/register_model.py
+      hash: md5
+      md5: a3592439195a52900d0a87d589b73c71
+      size: 2088

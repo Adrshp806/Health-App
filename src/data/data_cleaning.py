@@ -159,11 +159,11 @@ if __name__ == "__main__":
     heart_data_path = r"data/raw/heart.csv"
 
 
-    kidney_data_path = r"https://raw.githubusercontent.com/Adrshp806/Health-App/refs/heads/main/kidney_disease.csv"
-    liver_data_path = r"https://raw.githubusercontent.com/Adrshp806/Health-App/refs/heads/main/indian_liver_patient.csv"
-    diabetes_data_path = r"https://raw.githubusercontent.com/Adrshp806/Health-App/refs/heads/main/diabetes.csv"
-    cancer_data_path = r"https://raw.githubusercontent.com/Adrshp806/Health-App/refs/heads/main/cancer.csv"
-    heart_data_path = r"https://raw.githubusercontent.com/Adrshp806/Health-App/refs/heads/main/heart.csv"
+    kidney_data_path = r"https://raw.githubusercontent.com/Adrshp806/data_file_for-projects/refs/heads/main/kidney_disease.csv"
+    liver_data_path = r"https://raw.githubusercontent.com/Adrshp806/data_file_for-projects/refs/heads/main/indian_liver_patient.csv"
+    diabetes_data_path = r"https://raw.githubusercontent.com/Adrshp806/data_file_for-projects/refs/heads/main/diabetes.csv"
+    cancer_data_path = r"https://raw.githubusercontent.com/Adrshp806/data_file_for-projects/refs/heads/main/cancer.csv"
+    heart_data_path = r"https://raw.githubusercontent.com/Adrshp806/data_file_for-projects/refs/heads/main/heart.csv"
     
     # Load and clean the kidney dataset
     kidney_df = pd.read_csv(kidney_data_path)

@@ -1,6 +1,4 @@
 [core]
-    remote = myremote
-['remote "myremote"']
-    url = s3://health-apps/
-['remote "gdrive_remote"']
-    url = gdrive://1csW2c114KST69BwlZ-8k8wFwd6BxePrC
+    remote = local_remote
+['remote "local_remote"']
+    url = C:\Users\adiip\OneDrive\Desktop\Health-App-Remote

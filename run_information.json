@@ -1,0 +1,5 @@
+{
+    "run_id": "d9e450e033b2448089fc4a9825ae32f4",
+    "artifact_path": "mlflow-artifacts:/091c48da21da4a6489eb091eb953288d/d9e450e033b2448089fc4a9825ae32f4/artifacts",
+    "model_name": "cancer_pred_model"
+}
